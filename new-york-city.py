@@ -61,7 +61,7 @@ for page_url in page_urls:
 #creates csv
 fieldnames = ['district', 'name', 'party','phone', 'email', 'website', 'address']
 ny_council_file = open('ny_council.csv','wb')
-csvwriter = csv.DictWriter(ny_council_file, delimiter='\t', fieldnames=fieldnames)
+csvwriter = csv.DictWriter(ny_council_file, delimiter=',', fieldnames=fieldnames)
 csvwriter.writerow(dict((fn,fn) for fn in fieldnames))
 for row in dictList:
     csvwriter.writerow(row)
