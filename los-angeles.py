@@ -72,7 +72,7 @@ for x in range(0,15):
 #creates csv
 fieldnames = ['district', 'name', 'website','address','phone','email']
 LA_council_file = open('LA_council.csv','wb')
-csvwriter = csv.DictWriter(LA_council_file, delimiter='\t', fieldnames=fieldnames)
+csvwriter = csv.DictWriter(LA_council_file, delimiter=',', fieldnames=fieldnames)
 csvwriter.writerow(dict((fn,fn) for fn in fieldnames))
 for row in ultimateList:
     csvwriter.writerow(row)
