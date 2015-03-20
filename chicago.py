@@ -14,32 +14,21 @@ def get_page_urls():
 
 #get data from each individual councilor's page
 
+
 def get_councilor_data(page_url):
     councilor_data = {}
     response = requests.get(root_url + page_url)
     soup = bs4.BeautifulSoup(response.text)
     try:
         councilor_data['district'] = soup.find_all('h1')[0].get_text().encode('utf-8')
-    except:
-        pass
-    try:
         if "Alderman" in (soup.select('h3')[2].get_text().encode('utf-8')):
             councilor_data['name'] = soup.select('h3')[2].get_text()[9:].encode('utf-8')
         else:
-            councilor_data['name'] = soup.select('h3')[2].get_text().encode('utf-8')    
-    except:
-        pass
-    try:
+            councilor_data['name'] = soup.select('h3')[2].get_text().encode('utf-8')       
         if len(soup.select('tr td')[3].get_text().encode('utf-8')) < 14:
             councilor_data['phone'] = soup.select('tr td')[3].get_text().encode('utf-8')
-    except:
-        pass
-    try:
-        councilor_data['address'] = soup.select('tr td')[7].get_text().encode('utf-8')
-    except:
-        pass
-    try:
-        councilor_data['email'] = [a.attrs.get('href') for a in soup.select('td a[href]')][0].encode('utf-8')
+        councilor_data['address'] = soup.select('tr td')[7].get_text().encode('utf-8').replace('\n', '')
+        councilor_data['email'] = [a.attrs.get('href') for a in soup.select('td a[href]')][0].encode('utf-8').replace('mailto:','')
     except:
         pass
     councilor_data['website'] = (root_url + page_url).encode('utf-8')         
