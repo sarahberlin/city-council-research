@@ -5,9 +5,6 @@ from csv import DictWriter
 
 root_url = 'http://charmeck.org'
 index_url = '/city/charlotte/CityCouncil/MeettheCouncil/Pages/home.aspx'
-#page_url = 'http://charmeck.org/city/charlotte/CityCouncil/MeettheCouncil/Pages/DavidHoward.aspx'
-#response = requests.get(root_url+page_url)
-#soup = bs4.BeautifulSoup(response.text)
 
 #get page urls of all the councilors
 def get_page_urls():
